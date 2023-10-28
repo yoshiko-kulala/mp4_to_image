@@ -33,7 +33,8 @@ def mp4_to_image_publisher():
                 continue
             else:
                 break
-        image_msg = bridge.cv2_to_imgmsg(frame, encoding="bgr8")
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image_msg = bridge.cv2_to_imgmsg(frame, encoding="rgb8")
         pub.publish(image_msg)
         rate.sleep()
 
